@@ -1,6 +1,7 @@
 '''
 Sistema de Sangre.
-By Roger Urrutia +Agregar el nombre del resto de los Integrantes
+By Roger Urrutia 
+Jose L Gonzalez M.
 
 Concepto general, crear un sistema de donacion de sangre en la cual el donante de su informacion y se pueda ver si este es capaz 
 de donarle a alguno de los usuarios quwe necesitan donacion. Para eso se realiza una evaluacion de los tipos de sangre que este puede aceptar.
@@ -14,6 +15,14 @@ import matplotlib.pyplot as plt
 
 #Clases
 class Donante():
+    """Es la clase utilizada para definir a los donantes 
+
+    Parameters:
+        name(str): Nombre del donante
+        age(num): Edad del donante
+        b_type(str): Tipo de sangre del donante
+        sex(str): Sexo del paciente (No en cantidad, sino su genero)
+        """
 
     def __init__(self,name,age,b_type,sex):
         self.name=name
@@ -23,11 +32,22 @@ class Donante():
 
 
 class Donatario(Donante):
+    """Define a un donatario de sangre en la base de datos
+    """
 
     def __init__(self,name,age,b_type,sex):
+        """Mismos datos que para un donante 
+        Parameters:
+            name(str): Nombre del donante
+            age(num): Edad del donante
+            b_type(str): Tipo de sangre del donante
+            sex(str): Sexo del paciente (No en cantidad, sino su genero)
+            """
         super().__init__(name,age,b_type,sex)
 
     def posible(self):
+        """Define los posibles tipos de sangre que se pueden almacenar
+        A+,A-,B+.B-,AB+,AB-,O+,O-"""
         if self.b_type=="A+":
             sangre_permitida=["A+","A-","O+","O-"]
         elif self.b_type=="O+":
@@ -50,6 +70,17 @@ class Donatario(Donante):
 
 #Funciones 
 def menu():
+    """Manda el Menú \n
+    Opciones:
+        1: Añadir a un donante
+        2: Añadir a un donatario
+        3: Revisar la lista de donantes
+        4: Revisar la lista de donatarios
+        5: Realizar una transfusion
+        6: Estadisticas
+        7: Salir
+    Returns:
+        opc(num):Opcion del menu """
     print("\nBienvenido a el sistema de Donacion de Sangre. Elige la accion que deseas realizar.\n1.Añadir Donante de Sangre\n2.Añadir Donatario de Sangre\n3.Revisar lista de Donantes\n4.Revisar Lista de Donatarios\n5.Realizar una transfusion\n6.Estadisticas\n7.Salir")
     opc=int(input("Seleccionar: "))
     return opc
@@ -68,7 +99,7 @@ if __name__=="__main__":
         
         opc=menu()
         
-        if opc==1:
+        if opc==1: #Opcion 1 del menú añadir a un donante.
             cont=1
             while cont==1:
                 print(f"Excelente, crearemos un nuevo donante de sangre. Actualmente hay {len(donantes)} donantes de Sangre.")
@@ -102,7 +133,7 @@ if __name__=="__main__":
                 else:
                     cont=0
         
-        elif opc==2:
+        elif opc==2:#Opcion 2 del menú Añadir a un donatorio
             cont=1
             print(f"Excelente, crearemos un nuevo donatario de sangre. Actualmente hay {len(donatarios)} donatarios de Sangre.")
             while cont==1:
@@ -130,7 +161,7 @@ if __name__=="__main__":
                 else:
                     cont=0
         
-        elif opc==3:
+        elif opc==3:#Opcion 3 del menú Revisar la lista de donantes
             if len(donantes)>=1:
                 print("Los donantes disponibles son: ")
                 for donante in donantes:
@@ -144,7 +175,7 @@ if __name__=="__main__":
                 print("\nNo hay ningun donante en la base de datos.")
                 print("\n"+("x"*20))
         
-        elif opc==4:
+        elif opc==4:#Opcion 4 del menú Revisar la lista de donatarios
             if len(donatarios)>=1:
                 print("Los donatarios disponibles son: ")
                 for donatario in donatarios:
@@ -158,7 +189,7 @@ if __name__=="__main__":
                 print("\nNo hay ningun donatario en la base de datos.")
                 print("\n"+("x"*20))
 
-        elif opc==5:
+        elif opc==5:#Opcion 5 del menú Realizar una transfusion
             print("\nSe realizara una transfusion. Es importante que los pacientes se encuentren en la base de datos.")
             
             while True:
@@ -213,7 +244,7 @@ if __name__=="__main__":
                 else:
                     break
             
-        elif opc==6:
+        elif opc==6:#opcion 6 del menú Mostrar estadistica. Se utiliza un modulo para poder mostrar en un cuadro estadistico a los donantes
             choose=int(input("Con gusto te mostramos las estadisticas. Elige las estadisticas que necesitas visualizar.\n1.Donantes\n2.Donatario"))
             #Estadisticas Donantes
             if choose==1:
@@ -291,7 +322,7 @@ if __name__=="__main__":
                 else:
                     print("No hay donatarios en la base de Datos.")
         
-        elif opc==7:
+        elif opc==7:#Opcion 7 del menú Ssalir.
             print("\nGracias por utilizar la aplicacion.")
             break
         
