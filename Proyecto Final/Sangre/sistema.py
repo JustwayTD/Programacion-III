@@ -322,7 +322,7 @@ if __name__=="__main__":
                 else:
                     print("No hay donatarios en la base de Datos.")
         
-        elif opc==7:#Opcion 7 del menú Ssalir.
+        elif opc==7:#Opcion 7 del menú salir.
             print("\nGracias por utilizar la aplicacion.")
             break
         
